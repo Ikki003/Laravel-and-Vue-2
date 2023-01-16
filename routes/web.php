@@ -37,6 +37,9 @@ Route::get('user/{user}/edit', [UserController::class, 'edit'])
 Route::post('user/{user}', [UserController::class, 'update'])
     ->name('user.update');
 
+Route::delete('user/delete/{user}', [UserController::class, 'delete'])
+    ->name('user.delete');
+
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),

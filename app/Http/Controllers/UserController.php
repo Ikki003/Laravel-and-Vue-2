@@ -18,6 +18,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request, App_user $app_user) {
+
         $app_user->create(
             Request::validate([
                 'id' => $app_user->id,
@@ -26,12 +27,9 @@ class UserController extends Controller
                 'sg_apellido' => $app_user->sg_apellido,
             ])
         );
-        // $name = $request->input('nombre');
-        // $pr_apellido = $request->input('pr_apellido');
-        // $sg_apellido = $request->input('sg_apellido');
+        
+        return redirect('user')->with('success', 'User updated successfully');
 
-        // DB::insert('insert into app_user (name, pr_apellido, sg_apellido) values (?, ?, ?)', [$name, $pr_apellido, $sg_apellido]);
-    
     }
 
     public function show(App_user $app_user) {
@@ -48,15 +46,22 @@ class UserController extends Controller
         ]]);
     }
 
-    public function update(App_user $user) {
+    public function update(App_user $user, Request $request) {
 
-        $user->update(
-            Request::validate([
-                'name' => ['max:50'],
-                'pr_apellido' => ['max:50'],
-                'sg_apellido' => ['max:50']
-            ])
-        );
+        $user->name = $request->name;
+        $user->pr_apellido = $request->pr_apellido;
+        $user->sg_apellido = $request->sg_apellido;
+        $user->save();
+
+        return redirect('user')->with('success', 'User updated successfully');
+
+    }
+
+    public function delete($id) {
+
+        App_user::find($id)->delete();
+
+        return redirect('user')->with('success', 'User deleted successfully');
 
     }
 }

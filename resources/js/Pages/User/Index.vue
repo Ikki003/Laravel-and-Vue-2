@@ -36,6 +36,10 @@
   </tbody>
 </table>
 </div>
+<button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-4 ml-4 ">
+  <a href="User/Create.vue"></a>
+  Create New User
+</button>
 
 </template>
 
